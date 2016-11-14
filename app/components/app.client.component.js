@@ -12,7 +12,15 @@ var core_1 = require('@angular/core');
 var ClientComponent = (function () {
     function ClientComponent() {
     }
-    ClientComponent.prototype.ngOnInit = function () { };
+    ClientComponent.prototype.ngOnInit = function () {
+        this.requiredUserName = true;
+    };
+    ClientComponent.prototype.onSubmit = function (val) {
+        console.log(val);
+        if (val) {
+            console.log(this.UserName);
+        }
+    };
     ClientComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

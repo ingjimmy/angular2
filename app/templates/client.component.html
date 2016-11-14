@@ -1,2 +1,10 @@
 <h1>Client</h1>
-<div></div>
+<div>
+    <form (ngSubmit)="onSubmit(form)" novalidate #form="ngForm">
+        <input [(ngModel)]="UserName" #username="ngModel" name="username" type="text" [required]="requiredUserName">
+        <div *ngIf="!username.valid && form._submitted"> 
+            Debes ingresar el nombre del usuario
+        </div>
+        <input type="submit" value="Guardar">
+    </form>
+</div>
