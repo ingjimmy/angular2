@@ -1,0 +1,29 @@
+<div>
+    <nav>
+        <ul>
+            <li>
+                <a routerLink="/client" routerLinkActive="active">Client</a>
+                <a routerLink="/company" routerLinkActive="active">Company</a>
+            </li>
+        </ul>
+    </nav>
+
+    <h1>Test of user list</h1>
+    <div>
+        <button (click)="getUsers()">Get users</button>
+    </div>
+    <section>
+        <ul>
+            <li *ngFor="let user of users" (click)="setUser($event, user)">
+                <span>First Name: {{user.firstName}}</span><br/>
+                <span>Last Name: {{user.lastName}}</span><br/>
+            </li>
+        </ul>
+    </section>
+</div>
+<section>
+    <child-component [childUser]="selectedUser"></child-component>
+</section>
+<section>
+    <router-outlet></router-outlet>
+</section>

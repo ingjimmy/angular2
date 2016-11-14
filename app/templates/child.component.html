@@ -1,0 +1,6 @@
+<h2>This is a children component</h2>
+<div *ngIf="childUser">
+    <input autofocus type="text" [(ngModel)]="childUser.firstName" /><br/>
+    <b>{{childUser.lastName}}</b>
+    <input type="button" (click)="childUser = null" />
+</div>
