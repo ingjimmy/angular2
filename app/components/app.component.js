@@ -15,7 +15,19 @@ var AppComponent = (function () {
         this.serv = serv;
     }
     AppComponent.prototype.getUsers = function () {
-        this.users = this.serv.getUsers();
+        var _this = this;
+        this.serv.userAll().subscribe(function (h) {
+            _this.users = h;
+        }, function (err) {
+            console.log(err);
+        });
+    };
+    AppComponent.prototype.getAll = function () {
+        this.serv.login().subscribe(function (h) {
+            console.log(h);
+        }, function (err) {
+            console.log(err);
+        });
     };
     AppComponent.prototype.setUser = function (event, user) {
         this.selectedUser = user;

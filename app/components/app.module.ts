@@ -2,6 +2,7 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { RouterModule }   from '@angular/router';
+import { HttpModule, JsonpModule } from '@angular/http'
 
 import { AppComponent } from './app.component'
 import { ChildComponent } from './app.child.component'
@@ -13,6 +14,8 @@ import { CompanyComponent } from './app.company.component'
   imports: [ 
     BrowserModule, 
     FormsModule,
+    HttpModule,
+    JsonpModule,
     RouterModule.forRoot([
       {path: '', component: ClientComponent},
       {path:'client', component: ClientComponent },

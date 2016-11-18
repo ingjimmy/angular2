@@ -9,21 +9,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
+var Rx_1 = require('rxjs/Rx');
+require('rxjs/add/operator/map');
+require('rxjs/add/operator/catch');
 var userService = (function () {
-    function userService() {
+    function userService(http) {
+        this.http = http;
     }
-    userService.prototype.getUsers = function () {
-        var array = [
-            { id: 1, firstName: 'Jimmy', lastName: 'Rodriguez 1', email: 'ingjimmy2@gmail.com' },
-            { id: 1, firstName: 'Jimmy 2', lastName: 'Rodriguez 2', email: 'ingjimmy3@gmail.com' },
-            { id: 1, firstName: 'Jimmy 3', lastName: 'Rodriguez 3', email: 'ingjimmy4@gmail.com' },
-            { id: 1, firstName: 'Jimmy 4', lastName: 'Rodriguez 4', email: 'ingjimmy5@gmail.comD' }
-        ];
-        return array;
+    userService.prototype.login = function () {
+        return this.http.post('http://192.168.1.107:8084/User/Login', { email: 'erika.vicioso@dasigno.com', password: '123' })
+            .map(function (re) { return re; })
+            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
+    };
+    userService.prototype.userAll = function () {
+        var params = new http_1.URLSearchParams();
+        params.set('appid', '1');
+        params.set('cnt', '2');
+        return this.http.get('http://192.168.1.107:8084/api/User/', { search: params })
+            .map(function (re) { return re.json(); })
+            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
     };
     userService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_1.Http])
     ], userService);
     return userService;
 }());

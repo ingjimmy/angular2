@@ -18,7 +18,19 @@ export class AppComponent {
   }
 
   getUsers ():void {
-    this.users = this.serv.getUsers();
+    this.serv.userAll().subscribe(h => { 
+      this.users = h; 
+    }, err => {
+      console.log(err)
+    });    
+  }
+
+  getAll ():void {
+    this.serv.login().subscribe(h => { 
+      console.log(h) 
+    }, err => {
+      console.log(err)
+    });
   }
 
   setUser (event:any, user:userModel):void {
